@@ -1,0 +1,17 @@
+#pragma once
+
+#include <QtTypes>
+#include <QPair>
+#include "Request.hpp"
+#include "Response.hpp"
+
+class DrawableElement;
+class DrawableItem;
+
+class Backend {
+public:
+    virtual ~Backend() = default;
+
+    virtual Response<DrawableItem *> addElement(Request<QPair<qint32, DrawableItem *>> request) = 0;
+    virtual ResponseBase addPage() = 0;
+};

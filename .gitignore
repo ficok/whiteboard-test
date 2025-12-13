@@ -1,0 +1,8 @@
+# ignore directories
+/build/
+/.qtcreator/
+
+# ignore files
+/CMakeLists.txt.user
+
+# restore files
