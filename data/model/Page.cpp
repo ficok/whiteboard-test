@@ -1,6 +1,11 @@
 #include "Page.hpp"
 #include "DrawableElement.hpp"
 
+Page::~Page() {
+    for (int i = 0; i < _elements.size(); ++i)
+        delete _elements[i];
+}
+
 qint32 Page::id() const {
     return _id;
 }

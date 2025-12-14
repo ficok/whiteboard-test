@@ -5,6 +5,7 @@
 
 class PageScene;
 class DrawableItem;
+class Controller;
 
 class Tool: public QObject {
     Q_OBJECT
@@ -24,5 +25,6 @@ public:
         PageScene* scene) = 0;
     virtual DrawableItem* onMouseRelease(
         QGraphicsSceneMouseEvent* event,
-        PageScene* scene) = 0;
+        PageScene* scene,
+        Controller& controller) = 0;
 };

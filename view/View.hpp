@@ -10,8 +10,9 @@ private:
     qint32 _currentPageIdx;
 
 public:
-    View(QGraphicsView* parent)
-        : QGraphicsView(parent) {}
+    View(QWidget* parent = nullptr);
+    ~View();
+
     qint32 currentPageIdx() const;
     void currentPageIdx(qint32 pageIdx);
     void nextPage();

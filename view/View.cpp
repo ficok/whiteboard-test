@@ -1,6 +1,13 @@
 #include "View.hpp"
 #include "PageScene.hpp"
 
+View::View(QWidget *parent)
+    : QGraphicsView(parent) {}
+View::~View() {
+    for (int i = 0; i < _pageScenes.size(); ++i)
+        delete _pageScenes[i];
+}
+
 qint32 View::currentPageIdx() const {
     return _currentPageIdx;
 }

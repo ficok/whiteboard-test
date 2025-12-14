@@ -1,17 +1,16 @@
 #pragma once
 
 #include "Backend.hpp"
-
-class Document;
+#include "Document.hpp"
 
 class LocalBackend: public Backend {
 private:
-    Document* _document;
-
     DrawableElement* convertToElement(DrawableItem *item);
     DrawableItem* convertToItem(DrawableElement *element);
 public:
-    LocalBackend();
-    Response<DrawableItem *> addElement(Request<QPair<qint32, DrawableItem *>> request) override;
+    LocalBackend() = default;
+    ~LocalBackend() = default;
+
+    Response<DrawableItem *> addElement(const Request<QPair<qint32, DrawableItem *>>& request) override;
     ResponseBase addPage() override;
 };

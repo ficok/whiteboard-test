@@ -4,8 +4,8 @@
 #include <QPair>
 #include "Request.hpp"
 #include "Response.hpp"
+#include "Backend.hpp"
 
-class Backend;
 class DrawableItem;
 class DrawableElement;
 
@@ -18,10 +18,11 @@ private:
     ~BackendManager();
 
     BackendManager(const BackendManager& other) = delete;
-    BackendManager operator =(const BackendManager& other) = delete;
+    BackendManager& operator =(const BackendManager& other) = delete;
+    BackendManager(BackendManager&& other) = delete;
+    BackendManager& operator =(BackendManager&& other) = delete;
 public:
-    static BackendManager* instance();
+    static BackendManager& instance();
+    Backend& backend() const;
     void changeBackend(Backend* newBackend);
-    Response<DrawableItem *> addElement(Request<QPair<qint32, DrawableItem *>> request);
-    ResponseBase addPage();
 };

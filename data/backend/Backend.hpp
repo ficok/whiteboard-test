@@ -12,6 +12,6 @@ class Backend {
 public:
     virtual ~Backend() = default;
 
-    virtual Response<DrawableItem *> addElement(Request<QPair<qint32, DrawableItem *>> request) = 0;
+    virtual Response<DrawableItem *> addElement(const Request<QPair<qint32, DrawableItem *>>& request) = 0;
     virtual ResponseBase addPage() = 0;
 };

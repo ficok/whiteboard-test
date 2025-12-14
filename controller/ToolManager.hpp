@@ -11,10 +11,12 @@ private:
     Tool* _activeTool;
 
 public:
-    static ToolManager* instance();
+    static ToolManager& instance();
     ToolManager(const ToolManager& other) = delete;
+    ToolManager(ToolManager&& other) = delete;
     ToolManager& operator=(const ToolManager& other) = delete;
+    ToolManager& operator=(ToolManager&& other) = delete;
 
-    Tool* activeTool() const;
+    Tool& activeTool() const;
     void activeTool(Tool* tool);
 };

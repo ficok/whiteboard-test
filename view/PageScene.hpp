@@ -7,15 +7,13 @@ class DrawableItem;
 class PageScene: public QGraphicsScene {
 private:
     qint32 _pageIdx;
-    QVector<DrawableItem *> _items;
 
 public:
-    PageScene(qint32 pageIdx);
+    PageScene(QObject* parent = nullptr);
+    PageScene(qint32 pageIdx, QObject* parent = nullptr);
+    ~PageScene() = default;
 
     qint32 pageIdx() const;
-    QVector<DrawableItem *>& items();
-    void addItem(DrawableItem *item);
-    void removeItem(DrawableItem *item);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* e) override;
