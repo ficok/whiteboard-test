@@ -6,6 +6,7 @@
 #include "Controller.hpp"
 #include "Request.hpp"
 #include "Response.hpp"
+#include "StashAction.hpp"
 
 PageScene::PageScene(QObject* parent)
     : QGraphicsScene(parent) {}
@@ -28,4 +29,15 @@ void PageScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *e) {
     auto& tool = ToolManager::instance().activeTool();
     Controller controller;
     tool.onMouseRelease(e, this, controller);
+}
+
+void PageScene::receiveResponse(const ResponseBase& response) {
+    auto operation = _stash[response.id];
+    if (response.valid())
+        operation->commit(*this);
+    else
+        operation->rollback(*this);
+
+    delete _stash[response.id];
+    _stash.remove(response.id);
 }

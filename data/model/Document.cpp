@@ -1,5 +1,6 @@
 #include "Document.hpp"
 #include "Page.hpp"
+#include "ResponseBase.hpp"
 
 Document* Document::_instance = nullptr;
 
@@ -20,6 +21,13 @@ Page& Document::operator [](int idx) {
 qint32 Document::size() const {
     return _pages.size();
 }
-void Document::addPage(Page* page) {
+void Document::addElement(QUuid requestId, qint32 pageIdx, DrawableElement *element) {
+    _pages[pageIdx]->addElement(element);
+    ResponseBase response(requestId, pageIdx, true);
+    emit sendResponse(response);
+}
+void Document::addPage(QUuid requestId, Page* page) {
     _pages.push_back(page);
+    ResponseBase response(requestId, true);
+    emit sendResponse(response);
 }

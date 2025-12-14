@@ -2,27 +2,24 @@
 #include "Page.hpp"
 #include "DrawableElement.hpp"
 #include "DrawableItem.hpp"
+#include "AddItemOperation.hpp"
+#include "EditItemOperation.hpp"
 
-Response<DrawableItem *> LocalBackend::addElement(const Request<QPair<qint32, DrawableItem *>>& request) {
+void LocalBackend::addElement(const Request<QPair<qint32, AddItemOperation *>>& request) {
     auto& document = Document::instance();
     auto pageIdx = request.payload().first;
-    auto item = request.payload().second;
+    auto operation = request.payload().second;
+    auto item = operation->item;
     auto no_elements = document[pageIdx].size();
-    auto element = convertToElement(item);
+    auto element = convertToElement(operation->item);
     element->id(no_elements);
-    document[pageIdx].addElement(convertToElement(item));
-    auto response = Response<DrawableItem *>(item);
-    response.valid(true);
-    return response;
+    document.addElement(request.id, pageIdx, convertToElement(item));
 }
-ResponseBase LocalBackend::addPage() {
+void LocalBackend::addPage(const Request<AddPageOperation *> request) {
     auto& document = Document::instance();
     auto newPage = new Page();
     newPage->id(document.size());
-    document.addPage(newPage);
-    auto response = ResponseBase();
-    response.valid(true);
-    return response;
+    document.addPage(request.id, newPage);
 }
 
 DrawableElement* LocalBackend::convertToElement(DrawableItem* item) {

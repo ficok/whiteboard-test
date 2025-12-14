@@ -23,7 +23,16 @@ public:
     virtual void onMouseMove(
         QGraphicsSceneMouseEvent* event,
         PageScene* scene) = 0;
-    virtual DrawableItem* onMouseRelease(
+    /**
+     * treba da napravi Operation instancu i kaze sceni
+     * da je izvrsi i stashuje, a zatim da kontroleru
+     * posalje zahtev za modifikaciju dokumenta.
+     * @brief onMouseRelease
+     * @param event
+     * @param scene
+     * @param controller
+     */
+    virtual void onMouseRelease(
         QGraphicsSceneMouseEvent* event,
         PageScene* scene,
         Controller& controller) = 0;

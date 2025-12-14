@@ -2,8 +2,11 @@
 
 #include <QtTypes>
 #include <QVector>
+#include <QUuid>
 
 class Page;
+class ResponseBase;
+class DrawableElement;
 
 class Document {
 private:
@@ -22,5 +25,9 @@ public:
     Page& operator[](int idx);
     qint32 size() const;
 
-    void addPage(Page* page);
+    void addPage(QUuid requestId, Page* page);
+    void addElement(QUuid requestId, qint32 pageIdx, DrawableElement* element);
+
+signals:
+    void sendResponse(const ResponseBase& response);
 };

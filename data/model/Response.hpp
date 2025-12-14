@@ -6,16 +6,21 @@
 template <typename T>
 class Response: public ResponseBase {
 private:
-    T _payload;
+    T* _payload;
 
 public:
-    explicit Response(T payload)
-        : _payload(std::move(payload)) {}
+    explicit Response(T* payload)
+        : _payload(payload) {}
 
     const T& payload() const {
-        return _payload;
+        return *_payload;
     }
-    void payload(const T& payload) {
-        _payload = std::move(payload);
+    void payload(T* payload) {
+        if (_payload != nullptr) {
+            delete _payload;
+            _payload = nullptr;
+        }
+
+        _payload = payload;
     }
 };

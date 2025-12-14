@@ -21,6 +21,16 @@ set(DATA_SOURCES
     data/model/Response.hpp
     data/model/ResponseBase.hpp
 
+    # items
+    data/items/DrawableItem.hpp data/items/DrawableItem.cpp
+
+    # operations
+    data/operations/Operation.hpp
+    data/operations/AddItemOperation.hpp    data/operations/AddItemOperation.cpp
+    data/operations/EditItemOperation.hpp   data/operations/EditItemOperation.hpp
+    data/operations/RemoveItemOperation.hpp data/operations/RemoveItemOperation.cpp
+    data/operations/AddPageOperation.hpp    data/operations/AddPageOperation.cpp
+
     # backend
     data/backend/Backend.hpp
     data/backend/LocalBackend.hpp   data/backend/LocalBackend.cpp
@@ -30,13 +40,14 @@ set(DATA_SOURCES
 set(VIEW_SOURCES
     view/View.hpp         view/View.cpp
     view/PageScene.hpp    view/PageScene.cpp
-    view/DrawableItem.hpp view/DrawableItem.cpp
 )
 
 set(CONTROLLER_SOURCES
     controller/Controller.hpp  controller/Controller.cpp
-    controller/Tool.hpp
     controller/ToolManager.hpp controller/ToolManager.cpp
+
+    # tools
+    controller/tools/Tool.hpp
 )
 
 set(COMMANDS_SOURCES
@@ -83,9 +94,12 @@ target_include_directories(whiteboard-test
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/data
         ${CMAKE_CURRENT_SOURCE_DIR}/data/model
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/items
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/operations
         ${CMAKE_CURRENT_SOURCE_DIR}/data/backend
         ${CMAKE_CURRENT_SOURCE_DIR}/view
         ${CMAKE_CURRENT_SOURCE_DIR}/controller
+        ${CMAKE_CURRENT_SOURCE_DIR}/controller/tools
         ${CMAKE_CURRENT_SOURCE_DIR}/commands
 )
 target_link_libraries(whiteboard-test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
