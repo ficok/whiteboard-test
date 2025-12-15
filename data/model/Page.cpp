@@ -18,9 +18,8 @@ qint32 Page::size() const {
 QVector<DrawableElement *>& Page::elements() {
     return _elements;
 }
-void Page::addElement(DrawableElement *element) {
-    // napravi deep copy elementa prvo
-    _elements.push_back(element);
+void Page::addElement(DrawableElement element) {
+    _elements.push_back(new DrawableElement(element));
 }
 DrawableElement *Page::operator[](int idx) {
     // provera da li je idx validan

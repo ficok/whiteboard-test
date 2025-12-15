@@ -14,6 +14,6 @@ public:
     LocalBackend() = default;
     ~LocalBackend() = default;
 
-    void addElement(const Request<QPair<qint32, AddItemOperation *>>& request) override;
-    void addPage(const Request<AddPageOperation *>) override;
+    void addElement(const Request<AddItemRequestModel>& request) override;
+    void addPage(const Request<AddPageRequestModel>) override;
 };

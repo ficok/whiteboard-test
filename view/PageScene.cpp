@@ -6,7 +6,7 @@
 #include "Controller.hpp"
 #include "Request.hpp"
 #include "Response.hpp"
-#include "StashAction.hpp"
+#include "Operation.hpp"
 
 PageScene::PageScene(QObject* parent)
     : QGraphicsScene(parent) {}

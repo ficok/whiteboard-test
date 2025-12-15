@@ -16,13 +16,23 @@ set(DATA_SOURCES
     # models
     data/model/Document.hpp        data/model/Document.cpp
     data/model/Page.hpp            data/model/Page.cpp
-    data/model/DrawableElement.hpp data/model/DrawableElement.cpp
-    data/model/Request.hpp
     data/model/Response.hpp
     data/model/ResponseBase.hpp
 
-    # items
-    data/items/DrawableItem.hpp data/items/DrawableItem.cpp
+    # requests
+    data/requests/Request.hpp
+    data/requests/AddItemRequestModel.hpp
+    data/requests/AddPageRequestModel.hpp
+
+    # drawables
+    ## elements
+    data/model/drawables/DrawableElement.hpp data/model/drawables/DrawableElement.cpp
+
+    ## drafts
+    data/model/drawables/DrawableDraft.hpp data/model/drawables/DrawableDraft.cpp
+
+    ## items
+    data/model/drawables/DrawableItem.hpp data/model/drawables/DrawableItem.cpp
 
     # operations
     data/operations/Operation.hpp
@@ -94,9 +104,10 @@ target_include_directories(whiteboard-test
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/data
         ${CMAKE_CURRENT_SOURCE_DIR}/data/model
-        ${CMAKE_CURRENT_SOURCE_DIR}/data/items
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/model/drawables
         ${CMAKE_CURRENT_SOURCE_DIR}/data/operations
         ${CMAKE_CURRENT_SOURCE_DIR}/data/backend
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/requests
         ${CMAKE_CURRENT_SOURCE_DIR}/view
         ${CMAKE_CURRENT_SOURCE_DIR}/controller
         ${CMAKE_CURRENT_SOURCE_DIR}/controller/tools

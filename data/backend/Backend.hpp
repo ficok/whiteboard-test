@@ -3,15 +3,16 @@
 #include <QtTypes>
 #include <QPair>
 #include "Request.hpp"
-#include "Response.hpp"
 
 class DrawableElement;
 class DrawableItem;
+class AddItemRequestModel;
+class AddPageRequestModel;
 
 class Backend {
 public:
     virtual ~Backend() = default;
 
-    virtual Response<DrawableItem *> addElement(const Request<QPair<qint32, DrawableItem *>>& request) = 0;
-    virtual ResponseBase addPage(const Request<AddPageOperation*> request) = 0;
+    virtual void addElement(const Request<AddItemRequestModel>& request) = 0;
+    virtual void addPage(const Request<AddPageRequestModel> request) = 0;
 };

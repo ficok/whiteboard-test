@@ -7,16 +7,17 @@ template <typename T>
 class Request {
 private:
     T _payload;
+    QUuid id;
 
 public:
-    QUuid id;
-    explicit Request(T payload)
-        : _payload(std::move(payload)) {}
+    explicit Request(QUuid id, const T& payload)
+        : _id(id), _payload(payload) {}
 
     const T& payload() const {
         return _payload;
     }
-    void payload(const T& item) {
-        _payload = std::move(payload);
+
+    const QUuid& id() const {
+        return _id;
     }
 };

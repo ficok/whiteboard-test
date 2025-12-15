@@ -3,11 +3,11 @@
 #include "BackendManager.hpp"
 #include "Backend.hpp"
 
-Response<DrawableItem *> Controller::addElement(const Request<QPair<qint32, DrawableItem *>>& request) {
+void Controller::addElement(const Request<AddItemRequestModel>& request) {
     auto& backend = BackendManager::instance().backend();
     backend.addElement(request);
 }
-ResponseBase Controller::addPage() {
+void Controller::addPage(const Request<AddPageRequestModel>& request) {
     auto& backend = BackendManager::instance().backend();
     backend.addPage(request);
 }

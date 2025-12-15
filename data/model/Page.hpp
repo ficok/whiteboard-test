@@ -9,6 +9,7 @@ class Page {
 private:
     qint32 _id;
     QVector<DrawableElement *> _elements;
+
 public:
     Page() = default;
     ~Page();

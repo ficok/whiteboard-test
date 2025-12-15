@@ -24,9 +24,10 @@ public:
         QGraphicsSceneMouseEvent* event,
         PageScene* scene) = 0;
     /**
-     * treba da napravi Operation instancu i kaze sceni
-     * da je izvrsi i stashuje, a zatim da kontroleru
-     * posalje zahtev za modifikaciju dokumenta.
+     * mora da uradi naredne stvari:
+     * 1. pravi DrawableDraft, sto predstavlja kanonski oblik elementa
+     * 2. pravi Operation instancu i stavlja je u stash scene za optimisticno crtanje
+     * 3. konvertuje DrawableDraft u DrawableElement i predaje kontroleru
      * @brief onMouseRelease
      * @param event
      * @param scene
