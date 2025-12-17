@@ -4,11 +4,11 @@
 ToolManager* ToolManager::_instance = nullptr;
 ToolManager::ToolManager() {}
 
-ToolManager& ToolManager::instance() {
+ToolManager* ToolManager::instance() {
     if (_instance == nullptr)
         _instance = new ToolManager();
 
-    return *_instance;
+    return _instance;
 }
 
 Tool& ToolManager::activeTool() const {

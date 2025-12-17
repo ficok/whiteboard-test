@@ -3,12 +3,14 @@
 #include <QtTypes>
 #include <QVector>
 #include <QUuid>
+#include <QObject>
 
 class Page;
-class ResponseBase;
+class Response;
 class DrawableElement;
 
-class Document {
+class Document: public QObject {
+    Q_OBJECT
 private:
     static Document* _instance;
     Document() = default;
@@ -21,13 +23,13 @@ private:
 
     QVector<Page *> _pages;
 public:
-    static Document& instance();
+    static Document* instance();
     Page& operator[](int idx);
     qint32 size() const;
 
     void addPage(QUuid requestId, Page* page);
-    void addElement(QUuid requestId, qint32 pageIdx, DrawableElement* element);
+    void addElement(QUuid requestId, qint32 pageIdx, DrawableElement element);
 
 signals:
-    void sendResponse(const ResponseBase& response);
+    void sendResponse(const Response& response);
 };

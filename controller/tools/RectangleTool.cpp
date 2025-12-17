@@ -2,6 +2,8 @@
 #include "Controller.hpp"
 #include "Request.hpp"
 #include "AddItemRequestModel.hpp"
+#include "AddItemOperation.hpp"
+#include "RectangleItem.hpp"
 
 RectangleTool::~RectangleTool() {
     if (_draft != nullptr) delete _draft;
@@ -17,20 +19,16 @@ void RectangleTool::onMousePress(
 
     _draft->begin(event->pos());
 
-    DrawableItem* item = _draft->toItem();
-    scene->beginOptimisticOperation(
-        item,
-        _pendingOpId);
+    _item = new RectangleItem(_draft->data());
+    AddItemOperation* op = new AddItemOperation(_pendingOpId, _item);
+    scene->addOperation(op);
 }
 void RectangleTool::onMouseMove(
     QGraphicsSceneMouseEvent *event,
     PageScene *scene) {
     if (!_draft) return;
-
     _draft->update(event->pos());
-    scene->updateOptimisticOperation(
-        _pendingOpId,
-        *_draft);
+    _item->sync(_draft->data());
 }
 void RectangleTool::onMouseRelease(
     QGraphicsSceneMouseEvent *event,

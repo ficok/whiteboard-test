@@ -11,15 +11,17 @@ BackendManager::~BackendManager() {
     delete _backend;
 }
 
-BackendManager& BackendManager::instance() {
+BackendManager* BackendManager::instance() {
     if (_instance == nullptr)
         _instance = new BackendManager();
-    return *_instance;
+    return _instance;
 }
 
 void BackendManager::changeBackend(Backend* newBackend) {
-    delete _backend;
-    _backend = nullptr;
+    if (_backend != nullptr) {
+        delete _backend;
+        _backend = nullptr;
+    }
     _backend = newBackend;
 }
 

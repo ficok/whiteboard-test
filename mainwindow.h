@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "View.hpp"
+#include "PageScene.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    View* _view;
+    PageScene* _scene;
 };
 #endif // MAINWINDOW_H

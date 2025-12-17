@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QWidget>
+#include "DrawableData.hpp"
 
 class DrawableElement;
 

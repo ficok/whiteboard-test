@@ -18,26 +18,32 @@ qint32 PageScene::pageIdx() const {
 }
 
 void PageScene::mousePressEvent(QGraphicsSceneMouseEvent *e) {
-    auto& tool = ToolManager::instance().activeTool();
+    auto& tool = ToolManager::instance()->activeTool();
     tool.onMousePress(e, this);
 }
 void PageScene::mouseMoveEvent(QGraphicsSceneMouseEvent *e) {
-    auto& tool = ToolManager::instance().activeTool();
+    auto& tool = ToolManager::instance()->activeTool();
     tool.onMouseMove(e, this);
 }
 void PageScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *e) {
-    auto& tool = ToolManager::instance().activeTool();
+    auto& tool = ToolManager::instance()->activeTool();
     Controller controller;
     tool.onMouseRelease(e, this, controller);
 }
 
-void PageScene::receiveResponse(const ResponseBase& response) {
-    auto operation = _stash[response.id];
-    if (response.valid())
-        operation->commit(*this);
-    else
-        operation->rollback(*this);
+void PageScene::addOperation(Operation* op) {
+    _stash.insert(op->id, op);
+    op->commit(this);
+}
 
-    delete _stash[response.id];
-    _stash.remove(response.id);
+void PageScene::receiveResponse(const Response& response) {
+    if (response.pageIdx() != _pageIdx)
+        return;
+
+    Operation* operation = _stash[response.operationId()];
+    if (!response.valid())
+        operation->rollback(this);
+
+    delete _stash[response.operationId()];
+    _stash.remove(response.operationId());
 }

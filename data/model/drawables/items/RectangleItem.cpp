@@ -1,9 +1,15 @@
 #include "RectangleItem.hpp"
+#include "RectangleDraft.hpp"
 
 RectangleItem::RectangleItem(const RectangleData& data)
     : _data(data) {}
-void RectangleItem::boundingRect() const {
+QRectF RectangleItem::boundingRect() const {
     return _data.rect;
+}
+void RectangleItem::sync(RectangleData data) {
+    _data = data;
+    prepareGeometryChange();
+    update();
 }
 void RectangleItem::paint(
     QPainter *painter,

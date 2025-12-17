@@ -15,9 +15,9 @@
  * @brief The DrawableElement class
  */
 struct DrawableElement {
-    QUuid id;
+    qint32 id;
     DrawableData data;
 
-    DrawableData(QUuid id, DrawableData data)
-        : id(std::move(id)), data(std::move(data)) {}
+    DrawableElement(DrawableData data)
+        : data(std::move(data)) {}
 };

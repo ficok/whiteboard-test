@@ -2,9 +2,9 @@
 
 #include "Backend.hpp"
 #include "Document.hpp"
-
-class AddItemOperation;
-class AddPageOperation;
+#include "AddItemRequestModel.hpp"
+#include "AddPageRequestModel.hpp"
+#include "Request.hpp"
 
 class LocalBackend: public Backend {
 private:
@@ -15,5 +15,5 @@ public:
     ~LocalBackend() = default;
 
     void addElement(const Request<AddItemRequestModel>& request) override;
-    void addPage(const Request<AddPageRequestModel>) override;
+    void addPage(const Request<AddPageRequestModel>& request) override;
 };

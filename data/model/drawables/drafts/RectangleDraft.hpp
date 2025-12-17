@@ -17,6 +17,6 @@ public:
     void begin(const QPointF& start);
     void update(const QPointF& pos) override;
 
+    RectangleData data() const;
     DrawableElement toElement() const override;
-    DrawableItem* toItem() const override;
 };

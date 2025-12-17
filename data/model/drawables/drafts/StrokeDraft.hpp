@@ -12,6 +12,6 @@ public:
     StrokeDraft(QColor color, qreal thickness);
     void update(const QPointF &scenePos) override;
 
+    StrokeData data() const;
     DrawableElement toElement() const override;
-    DrawableItem* toItem() const override;
 };

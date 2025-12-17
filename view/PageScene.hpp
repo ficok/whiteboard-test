@@ -6,9 +6,9 @@
 
 class DrawableItem;
 class Operation;
-class ResponseBase;
+class Response;
 
-class PageScene: public QGraphicsScene, public QObject {
+class PageScene: public QGraphicsScene {
     Q_OBJECT
 private:
     qint32 _pageIdx;
@@ -20,6 +20,9 @@ public:
     ~PageScene() = default;
 
     qint32 pageIdx() const;
+    void pageIdx(qint32 id) { _pageIdx = id; }
+
+    void addOperation(Operation* op);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* e) override;
@@ -27,5 +30,5 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* e) override;
 
 public slots:
-    void receiveResponse(const ResponseBase& response);
+    void receiveResponse(const Response& response);
 };

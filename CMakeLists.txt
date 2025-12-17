@@ -19,14 +19,15 @@ set(DATA_SOURCES
     data/model/DrawableFactory.hpp
 
     # requests
-    data/requests/Request.hpp
-    data/requests/AddItemRequestModel.hpp
-    data/requests/AddPageRequestModel.hpp
+    data/communication/Request.hpp
+    data/communication/AddItemRequestModel.hpp
+    data/communication/AddPageRequestModel.hpp
+    data/communication/Response.hpp
 
     # drawables
     ## elements
     data/model/drawables/DrawableData.hpp
-    data/model/drawables/DrawableElement.hpp data/model/drawables/DrawableElement.cpp
+    data/model/drawables/DrawableElement.hpp
 
     ## drafts
     data/model/drawables/drafts/DrawableDraft.hpp
@@ -115,7 +116,7 @@ target_include_directories(whiteboard-test
         ${CMAKE_CURRENT_SOURCE_DIR}/data/model/drawables/drafts
         ${CMAKE_CURRENT_SOURCE_DIR}/data/operations
         ${CMAKE_CURRENT_SOURCE_DIR}/data/backend
-        ${CMAKE_CURRENT_SOURCE_DIR}/data/requests
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/communication
         ${CMAKE_CURRENT_SOURCE_DIR}/view
         ${CMAKE_CURRENT_SOURCE_DIR}/controller
         ${CMAKE_CURRENT_SOURCE_DIR}/controller/tools

@@ -14,5 +14,5 @@ public:
     virtual ~Backend() = default;
 
     virtual void addElement(const Request<AddItemRequestModel>& request) = 0;
-    virtual void addPage(const Request<AddPageRequestModel> request) = 0;
+    virtual void addPage(const Request<AddPageRequestModel>& request) = 0;
 };

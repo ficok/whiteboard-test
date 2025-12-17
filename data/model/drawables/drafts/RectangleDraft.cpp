@@ -14,16 +14,14 @@ void RectangleDraft::update(const QPointF& pos) {
 
 DrawableElement RectangleDraft::toElement() const {
     return DrawableElement(
-        QUuid::createUUid(),
         RectangleData {
             QRectF(_start, _end).normalized(),
                 _stroke, _fill, _width
         });
 }
-DrawableItem* RectangleDraft::toItem() const {
-    return new RectangleItem(
-        RectangleData {
-            QRectF(_start, _end).normalized(),
-                _stroke, _fill, _width
-        });
+RectangleData RectangleDraft::data() const {
+    const QRectF rect = QRectF(_start, _end).normalized();
+    return RectangleData {
+            rect, _stroke, _fill, _width
+    };
 }

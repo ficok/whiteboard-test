@@ -18,7 +18,7 @@ public:
 
     void addElement(const Request<AddItemRequestModel>& request);
     // Response<DrawableItem *> editElement(const Request<QPair<qint32, DrawableItem *>>& request);
-    // ResponseBase removeElement(const Request<QPair<qint32, DrawableItem *>>& request);
+    // Response removeElement(const Request<QPair<qint32, DrawableItem *>>& request);
     void addPage(const Request<AddPageRequestModel>& request);
-    // ResponseBase removePage(const Request<qint32>& request);
+    // Response removePage(const Request<qint32>& request);
 };

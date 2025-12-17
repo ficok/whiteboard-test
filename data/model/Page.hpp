@@ -8,11 +8,11 @@ class DrawableElement;
 class Page {
 private:
     qint32 _id;
-    QVector<DrawableElement *> _elements;
+    QVector<DrawableElement> _elements;
 
 public:
     Page() = default;
-    ~Page();
+    ~Page() = default;
 
     Page(const Page& other) = delete;
     Page& operator =(const Page& other) = delete;
@@ -22,8 +22,8 @@ public:
 
     qint32 size() const;
 
-    QVector<DrawableElement *>& elements();
-    void addElement(DrawableElement *element);
+    QVector<DrawableElement>& elements();
+    void addElement(DrawableElement element);
     // removeElement
-    DrawableElement *operator[](int idx);
+    const DrawableElement& operator[](int idx);
 };

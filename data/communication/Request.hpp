@@ -6,8 +6,9 @@
 template <typename T>
 class Request {
 private:
-    T _payload;
-    QUuid id;
+    // might have lifetime issues; must outlive the request
+    const T& _payload;
+    QUuid _id;
 
 public:
     explicit Request(QUuid id, const T& payload)

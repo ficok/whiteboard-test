@@ -4,9 +4,14 @@
 #include "RectangleDraft.hpp"
 #include "PageScene.hpp"
 
+class RectangleItem;
+
 class RectangleTool final: public Tool {
 private:
+    // owns
     RectangleDraft *_draft = nullptr;
+    // doesn't own; scene does
+    RectangleItem* _item = nullptr;
     QUuid _pendingOpId = QUuid::createUuid();
 
 public:

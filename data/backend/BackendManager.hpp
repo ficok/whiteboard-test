@@ -11,7 +11,7 @@ class DrawableElement;
 
 class BackendManager {
 private:
-    Backend* _backend;
+    Backend* _backend = nullptr;
     static BackendManager* _instance;
     BackendManager();
     BackendManager(Backend* backend);
@@ -22,7 +22,7 @@ private:
     BackendManager(BackendManager&& other) = delete;
     BackendManager& operator =(BackendManager&& other) = delete;
 public:
-    static BackendManager& instance();
+    static BackendManager* instance();
     Backend& backend() const;
     void changeBackend(Backend* newBackend);
 };

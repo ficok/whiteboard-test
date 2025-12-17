@@ -4,10 +4,15 @@
 #include "StrokeDraft.hpp"
 #include "PageScene.hpp"
 
-class StrokeTool final: Tool {
+class StrokeItem;
+
+class StrokeTool final: public Tool {
 private:
+    // owns
     StrokeDraft* _draft = nullptr;
-    QUuid _pendingOpId = QUuid::createQuuid();
+    // doesn't own; scene does
+    StrokeItem* _item = nullptr;
+    QUuid _pendingOpId = QUuid::createUuid();
 
 public:
     ~StrokeTool() override;

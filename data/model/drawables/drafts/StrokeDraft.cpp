@@ -4,20 +4,18 @@
 StrokeDraft::StrokeDraft(QColor color, qreal thickness)
     : _color(color), _thickness(thickness) {}
 
-void StrokeDraft::update(const QPointF& pos) override {
+void StrokeDraft::update(const QPointF& pos) {
     _points.push_back(pos);
 }
 
 DrawableElement StrokeDraft::toElement() const {
     return DrawableElement(
-        QUuid::createQuuid(),
         StrokeData {
             _points, _color, _thickness
         });
 }
-DrawableItem* StrokeDraft::toItem() const {
-    return new StrokeItem(
-        StrokeData {
-            _points, _color, _thickness
-        });
+StrokeData StrokeDraft::data() const {
+    return StrokeData {
+        _points, _color, _thickness
+    };
 }

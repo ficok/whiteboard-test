@@ -7,6 +7,5 @@ class DrawableDraft {
 public:
     virtual ~DrawableDraft() = default;
     virtual void update(const QPointF& scenePos) = 0;
-    virtual DrawableElement toElement() = 0;
-    virtual DrawableItem* toItem() = 0;
+    virtual DrawableElement toElement() const = 0;
 };
