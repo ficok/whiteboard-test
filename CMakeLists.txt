@@ -16,8 +16,7 @@ set(DATA_SOURCES
     # models
     data/model/Document.hpp        data/model/Document.cpp
     data/model/Page.hpp            data/model/Page.cpp
-    data/model/Response.hpp
-    data/model/ResponseBase.hpp
+    data/model/DrawableFactory.hpp
 
     # requests
     data/requests/Request.hpp
@@ -26,13 +25,18 @@ set(DATA_SOURCES
 
     # drawables
     ## elements
+    data/model/drawables/DrawableData.hpp
     data/model/drawables/DrawableElement.hpp data/model/drawables/DrawableElement.cpp
 
     ## drafts
-    data/model/drawables/DrawableDraft.hpp data/model/drawables/DrawableDraft.cpp
+    data/model/drawables/drafts/DrawableDraft.hpp
+    data/model/drawables/drafts/StrokeDraft.hpp    data/model/drawables/drafts/StrokeDraft.cpp
+    data/model/drawables/drafts/RectangleDraft.hpp data/model/drawables/drafts/RectangleDraft.cpp
 
     ## items
-    data/model/drawables/DrawableItem.hpp data/model/drawables/DrawableItem.cpp
+    data/model/drawables/items/DrawableItem.hpp
+    data/model/drawables/items/StrokeItem.hpp    data/model/drawables/items/StrokeItem.cpp
+    data/model/drawables/items/RectangleItem.hpp data/model/drawables/items/RectangleItem.cpp
 
     # operations
     data/operations/Operation.hpp
@@ -58,6 +62,8 @@ set(CONTROLLER_SOURCES
 
     # tools
     controller/tools/Tool.hpp
+    controller/tools/StrokeTool.hpp    controller/tools/StrokeTool.cpp
+    controller/tools/RectangleTool.hpp controller/tools/RectangleTool.cpp
 )
 
 set(COMMANDS_SOURCES
@@ -105,6 +111,8 @@ target_include_directories(whiteboard-test
         ${CMAKE_CURRENT_SOURCE_DIR}/data
         ${CMAKE_CURRENT_SOURCE_DIR}/data/model
         ${CMAKE_CURRENT_SOURCE_DIR}/data/model/drawables
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/model/drawables/items
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/model/drawables/drafts
         ${CMAKE_CURRENT_SOURCE_DIR}/data/operations
         ${CMAKE_CURRENT_SOURCE_DIR}/data/backend
         ${CMAKE_CURRENT_SOURCE_DIR}/data/requests
