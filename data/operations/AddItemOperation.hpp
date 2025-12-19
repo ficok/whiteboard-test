@@ -3,12 +3,15 @@
 #include "Operation.hpp"
 #include "PageScene.hpp"
 
+#include <QtTypes>
+
 class DrawableItem;
 
 class AddItemOperation: public Operation {
 public:
-    AddItemOperation(QUuid id, DrawableItem* item)
-        : Operation(id), item(item) {}
+    qint32 pageIdx;
+    AddItemOperation(QUuid id, qint32 pageIdx, DrawableItem* item)
+        : Operation(id), pageIdx(pageIdx), item(item) {}
     DrawableItem* item;
 
     void commit(PageScene* scene) override {

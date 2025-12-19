@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 
     BackendManager::instance()->changeBackend(new LocalBackend());
     ToolManager::instance()->activeTool(new StrokeTool());
+    Document::instance()->initialize();
 
     MainWindow w;
     w.show();

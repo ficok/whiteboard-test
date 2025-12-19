@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QUuid>
 #include <QObject>
+#include <QDebug>
 
 class Page;
 class Response;
@@ -25,11 +26,14 @@ private:
 public:
     static Document* instance();
     Page& operator[](int idx);
+    const Page& operator[](int idx) const;
     qint32 size() const;
 
     void addPage(QUuid requestId, Page* page);
     void addElement(QUuid requestId, qint32 pageIdx, DrawableElement element);
+    void initialize();
 
 signals:
-    void sendResponse(const Response& response);
+    void sendSceneResponse(const Response& response);
+    void sendViewResponse(const Response& response);
 };

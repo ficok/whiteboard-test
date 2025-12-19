@@ -35,6 +35,5 @@ public:
      */
     virtual void onMouseRelease(
         QGraphicsSceneMouseEvent* event,
-        PageScene* scene,
-        Controller& controller) = 0;
+        PageScene* scene) = 0;
 };

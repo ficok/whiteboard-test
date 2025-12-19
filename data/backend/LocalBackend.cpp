@@ -2,6 +2,8 @@
 #include "Page.hpp"
 #include "DrawableElement.hpp"
 #include "DrawableItem.hpp"
+#include "AddItemRequestModel.hpp"
+#include "AddPageRequestModel.hpp"
 #include "AddItemOperation.hpp"
 #include "AddPageOperation.hpp"
 #include "EditItemOperation.hpp"

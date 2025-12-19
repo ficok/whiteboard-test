@@ -7,12 +7,12 @@ template <typename T>
 class Request {
 private:
     // might have lifetime issues; must outlive the request
-    const T& _payload;
+    T _payload;
     QUuid _id;
 
 public:
-    explicit Request(QUuid id, const T& payload)
-        : _id(id), _payload(payload) {}
+    explicit Request(QUuid id, T payload)
+        : _id(id), _payload(std::move(payload)) {}
 
     const T& payload() const {
         return _payload;

@@ -55,6 +55,7 @@ set(DATA_SOURCES
 set(VIEW_SOURCES
     view/View.hpp         view/View.cpp
     view/PageScene.hpp    view/PageScene.cpp
+    view/PageSize.hpp
 )
 
 set(CONTROLLER_SOURCES

@@ -8,6 +8,7 @@ QRectF StrokeItem::boundingRect() const {
     return _path.boundingRect();
 }
 void StrokeItem::sync(StrokeData data) {
+    prepareGeometryChange();
     _data = data;
     rebuildPath();
     update();

@@ -13,29 +13,28 @@ void StrokeTool::onMousePress(
     QGraphicsSceneMouseEvent *event,
     PageScene *scene) {
     _draft = new StrokeDraft(Qt::black, 2.);
-    _draft->update(event->lastScenePos());
+    _draft->update(event->scenePos());
 
     _item = new StrokeItem(_draft->data());
-    AddItemOperation* op = new AddItemOperation(_pendingOpId, _item);
+    AddItemOperation* op = new AddItemOperation(_pendingOpId, scene->pageIdx(), _item);
     scene->addOperation(op);
 }
 void StrokeTool::onMouseMove(
     QGraphicsSceneMouseEvent *event,
     PageScene *scene) {
-    if (_draft == nullptr) return;
+    if (!_draft) return;
 
-    _draft->update(event->lastScenePos());
+    _draft->update(event->scenePos());
     this->_item->sync(_draft->data());
 }
 void StrokeTool::onMouseRelease(
     QGraphicsSceneMouseEvent *event,
-    PageScene *scene,
-    Controller &controller) {
+    PageScene *scene) {
     if (!_draft) return;
-
+    qDebug() << _pendingOpId;
     AddItemRequestModel requestModel(scene->pageIdx(), _draft->toElement());
     Request<AddItemRequestModel> request(_pendingOpId, requestModel);
-    controller.addElement(request);
+    scene->controller().addElement(request);
 
     delete _draft;
     _draft = nullptr;

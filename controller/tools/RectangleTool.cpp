@@ -20,7 +20,7 @@ void RectangleTool::onMousePress(
     _draft->begin(event->pos());
 
     _item = new RectangleItem(_draft->data());
-    AddItemOperation* op = new AddItemOperation(_pendingOpId, _item);
+    AddItemOperation* op = new AddItemOperation(_pendingOpId, scene->pageIdx(), _item);
     scene->addOperation(op);
 }
 void RectangleTool::onMouseMove(
@@ -32,13 +32,12 @@ void RectangleTool::onMouseMove(
 }
 void RectangleTool::onMouseRelease(
     QGraphicsSceneMouseEvent *event,
-    PageScene *scene,
-    Controller &controller) {
-    if (_draft) return;
+    PageScene *scene) {
+    if (!_draft) return;
 
     AddItemRequestModel requestModel(scene->pageIdx(), _draft->toElement());
     Request<AddItemRequestModel> request(_pendingOpId, requestModel);
-    controller.addElement(request);
+    scene->controller().addElement(request);
 
     delete _draft;
     _draft = nullptr;

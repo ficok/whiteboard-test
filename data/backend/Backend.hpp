@@ -3,11 +3,11 @@
 #include <QtTypes>
 #include <QPair>
 #include "Request.hpp"
+#include "AddItemRequestModel.hpp"
+#include "AddPageRequestModel.hpp"
 
 class DrawableElement;
 class DrawableItem;
-class AddItemRequestModel;
-class AddPageRequestModel;
 
 class Backend {
 public:

@@ -25,6 +25,5 @@ public:
         PageScene *scene) override;
     void onMouseRelease(
         QGraphicsSceneMouseEvent *event,
-        PageScene *scene,
-        Controller &controller) override;
+        PageScene *scene) override;
 };

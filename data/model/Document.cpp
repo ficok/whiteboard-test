@@ -17,6 +17,17 @@ Document* Document::instance() {
 }
 
 Page& Document::operator [](int idx) {
+    qDebug() << "page index: " << idx;
+    qDebug() << "# pages: " << _pages.size();
+    Q_ASSERT(idx >= 0 && idx < _pages.size());
+    Q_ASSERT(_pages[idx] != nullptr);
+    return *_pages[idx];
+}
+const Page& Document::operator[](int idx) const {
+    qDebug() << "page index: " << idx;
+    qDebug() << "# pages: " << _pages.size();
+    Q_ASSERT(idx >= 0 && idx < _pages.size());
+    Q_ASSERT(_pages[idx] != nullptr);
     return *_pages[idx];
 }
 qint32 Document::size() const {
@@ -25,10 +36,15 @@ qint32 Document::size() const {
 void Document::addElement(QUuid requestId, qint32 pageIdx, DrawableElement element) {
     _pages[pageIdx]->addElement(element);
     Response response(requestId, pageIdx, true);
-    emit sendResponse(response);
+    emit sendSceneResponse(response);
 }
 void Document::addPage(QUuid requestId, Page* page) {
     _pages.push_back(page);
     Response response(requestId, true);
-    emit sendResponse(response);
+    emit sendViewResponse(response);
+}
+void Document::initialize() {
+    Page* page = new Page();
+    page->id(0);
+    _pages.append(page);
 }
