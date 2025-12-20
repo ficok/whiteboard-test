@@ -31,7 +31,7 @@ void StrokeTool::onMouseRelease(
     QGraphicsSceneMouseEvent *event,
     PageScene *scene) {
     if (!_draft) return;
-    qDebug() << _pendingOpId;
+
     AddItemRequestModel requestModel(scene->pageIdx(), _draft->toElement());
     Request<AddItemRequestModel> request(_pendingOpId, requestModel);
     scene->controller().addElement(request);

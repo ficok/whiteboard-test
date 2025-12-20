@@ -8,7 +8,13 @@
 
 class DrawableItem;
 class DrawableElement;
-
+/**
+ * @brief The BackendManager class
+ * ista uloga kao ToolManager, samo sto vraca aktivan backend.
+ * to kako se koristi ova klasa, moze da se vidi u Controller::addElement.
+ *
+ * ovo je singleton klasa.
+ */
 class BackendManager {
 private:
     Backend* _backend = nullptr;

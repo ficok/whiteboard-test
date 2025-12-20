@@ -51,7 +51,7 @@ void PageScene::mousePressEvent(QGraphicsSceneMouseEvent *e) {
 void PageScene::mouseMoveEvent(QGraphicsSceneMouseEvent *e) {
     QPointF pos = e->scenePos();
 
-    /* don't allow the cursor to escape page */
+    /* ne dozvoli kursoru da ispadne iz stranice */
     QRectF bounds = this->sceneRect();
     if (pos.x() < bounds.left()) pos.setX(bounds.left());
     if (pos.y() < bounds.top()) pos.setY(bounds.top());
@@ -75,12 +75,12 @@ void PageScene::receiveResponse(const Response& response) {
     if (response.pageIdx() != _pageIdx)
         return;
 
-    Operation* operation = _stash[response.operationId()];
+    Operation* operation = _stash[response.pendingOpId()];
     if (!response.valid())
         operation->rollback(this);
 
-    delete _stash[response.operationId()];
-    _stash.remove(response.operationId());
+    delete _stash[response.pendingOpId()];
+    _stash.remove(response.pendingOpId());
 }
 Controller& PageScene::controller() const {
     return *_controller;

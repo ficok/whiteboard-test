@@ -1,7 +1,15 @@
 #pragma once
 
 class Tool;
-
+/**
+ * @brief The ToolManager class
+ * cuva trenutno aktivan tool.
+ *
+ * singleton klasa
+ *
+ * treba da daje referncu na aktivan tool i na isti nacin da daje
+ * aktivna sva zajednicka podesavanja (boja, debljina itd). to drugo treba dodati.
+ */
 class ToolManager {
 private:
     static ToolManager* _instance;

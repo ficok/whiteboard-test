@@ -6,15 +6,19 @@
 class PageScene;
 class DrawableItem;
 class Controller;
-
-class Tool: public QObject {
-    Q_OBJECT
-private:
-    DrawableItem* _draft;
-
+/**
+ * @brief The Tool class
+ * scena prosledjuje mouse event-ove aktivnom tool-u.
+ * svaki konkretan tool zna sta tacno treba da radi sa tim informacijama
+ * unutar svojih mouse event handler metoda.
+ *
+ * ovo je primer Strategy/Policy obrazca.
+ *
+ * pogledati StrokeTool za vise detalja.
+ */
+class Tool {
 public:
-    explicit Tool(QObject* parent = nullptr)
-        : QObject(parent) {}
+    explicit Tool() = default;
     virtual ~Tool() = default;
 
     virtual void onMousePress(
@@ -23,16 +27,6 @@ public:
     virtual void onMouseMove(
         QGraphicsSceneMouseEvent* event,
         PageScene* scene) = 0;
-    /**
-     * mora da uradi naredne stvari:
-     * 1. pravi DrawableDraft, sto predstavlja kanonski oblik elementa
-     * 2. pravi Operation instancu i stavlja je u stash scene za optimisticno crtanje
-     * 3. konvertuje DrawableDraft u DrawableElement i predaje kontroleru
-     * @brief onMouseRelease
-     * @param event
-     * @param scene
-     * @param controller
-     */
     virtual void onMouseRelease(
         QGraphicsSceneMouseEvent* event,
         PageScene* scene) = 0;
